@@ -160,7 +160,6 @@ public class StartupActivity extends AppCompatActivity {
         }
     }
 
-
     /**
      * When user changes the window he's focused on,
      * the app should be still fullscreen.

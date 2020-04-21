@@ -120,12 +120,6 @@ public class FavouritesFragment extends Fragment implements AdapterView.OnItemLo
             listItems.add(new FavouritesModel(name, false));
         }
     }
-    /**
-     * This method is to avoid NullPointerException
-     */
-    public void createListItems(){
-        listItems = new ArrayList<>();
-    }
 
     /**
      * Delete city when you have its name, used in MainActivity
@@ -156,6 +150,9 @@ public class FavouritesFragment extends Fragment implements AdapterView.OnItemLo
      * @return true if found else false;
      */
     public boolean isCityFavourite(String city) {
+        if (listItems == null) {
+            listItems = new ArrayList<>();
+        }
         for (int i = 0; i < listItems.size(); i++){
             if (listItems.get(i).getCityName().toLowerCase().equals(city.toLowerCase())){
                 return true;

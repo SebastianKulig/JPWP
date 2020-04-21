@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
     private static final String FAVOURITES = "favourites";
 
 
-
     /**
      * Creates the activity.
      * It is the frame which hosts all fragments, it also handles communication between them
@@ -65,11 +65,11 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initializeFragments(getIntent());
-        favouritesFragment.createListItems();
 
         navBar = findViewById(R.id.nav_bar_bottom);
         navBar.setOnNavigationItemSelectedListener(navListener);
@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
     /**
      * initializes app's fragments
      */
-    private void initializeFragments(Intent intent) {
+
+    private void initializeFragments(Intent intent){
 
         ArrayList<FavouritesModel> loadedFavourites = intent.getParcelableArrayListExtra(FAVOURITES);
         boolean loadedSwitchSate = intent.getBooleanExtra(SWITCH, true);
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
 
         if (favouritesFragment == null) {
             favouritesFragment = new FavouritesFragment();
-
-
         }
 
         if (searchFragment == null) {
@@ -104,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
         if (aboutFragment == null) {
             aboutFragment = new AboutFragment();
         }
+
         assert loadedCurrentCity != null;
         if (!loadedCurrentCity.isEmpty() && !loadedSwitchSate) {
             homeFragment.updateCityName(loadedCurrentCity);
@@ -231,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
         }
     }
 
-
     /**
      * Calls favouritesFragment and updates its data (itemsList) using data that was
      * previously sent from it (return to the sender, kinda)
@@ -304,9 +303,7 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
     @Override
     public boolean checkPresenceInFavourites(String name) {
         return favouritesFragment.isCityFavourite(name);
-
     }
-
     /**
      * When user changes the window he's focused on,
      * the app should be still fullscreen.
@@ -358,7 +355,6 @@ public class MainActivity extends AppCompatActivity implements FavouritesFragmen
     @Override
     public void sendSearchedCity(String input) {
         homeFragment.updateCityName(input);
-//        homeFragment.setCheckbox(favouritesFragment.isCityFavourite(input));
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, homeFragment);

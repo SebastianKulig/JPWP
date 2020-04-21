@@ -129,6 +129,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
         checkBox = view.findViewById(R.id.add);
         checkBox.post(new Runnable() {
             @Override
@@ -229,9 +231,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             int hour = Integer.parseInt(timeStr.substring(11, 13));
             int hourFromFile = Integer.parseInt(previousWeather[3].substring(11, 13));
 
-            if ( abs(yearFromFile - year) == 0 & abs(month - monthFromFile) == 0 & abs(day - dayFromFile) == 0 & abs(hour - hourFromFile) < 3 &
-                     previousWeather[2].toLowerCase().equals(cityNameText.toLowerCase())){
-                Log.wtf("wyswietlamy z plki", "plik");
+            boolean checkYear = abs(yearFromFile - year) == 0;
+            boolean checkMonth = abs(month - monthFromFile) == 0;
+            boolean checkDay = abs(day - dayFromFile) == 0;
+            boolean checkHour = abs(hour - hourFromFile) < 3;
+            boolean checkCity = previousWeather[2].toLowerCase().equals(cityNameText.toLowerCase());
+
+            if ( checkYear & checkMonth & checkDay & checkHour & checkCity){
+                isAddButtonPressed = listener.checkPresenceInFavourites(cityNameText);
+                checkBox.setChecked(isAddButtonPressed);
                 displayWeather(previousWeather);
                 return true;
             } else {
@@ -261,11 +269,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             int hour = Integer.parseInt(timeStr.substring(11, 13));
             int hourFromFile = Integer.parseInt(previousWeather[3].substring(11, 13));
 
-            if ( abs(yearFromFile - year) == 0 & abs(month - monthFromFile) == 0 & abs(day - dayFromFile) == 0 & abs(hour - hourFromFile) < 3 &
-                    ( abs(abs(Double.parseDouble(previousWeather[0])) -  abs(lat)) < 0.04) &
-                    ( abs(abs(Double.parseDouble(previousWeather[1])) - abs(lon)) < 0.04) &
-             previousWeather[2].toLowerCase().equals(cityNameText.toLowerCase())){
-                Log.wtf("wyswietlamy z plki", "plik");
+            boolean checkYear = abs(yearFromFile - year) == 0;
+            boolean checkMonth = abs(month - monthFromFile) == 0;
+            boolean checkDay = abs(day - dayFromFile) == 0;
+            boolean checkHour = abs(hour - hourFromFile) < 3;
+            boolean checkLat = abs(abs(Double.parseDouble(previousWeather[0])) -  abs(lat)) < 0.04;
+            boolean checkLon = abs(abs(Double.parseDouble(previousWeather[1])) - abs(lon)) < 0.04;
+            boolean checkCity = previousWeather[2].toLowerCase().equals(cityNameText.toLowerCase());
+
+            if ( checkYear & checkMonth & checkDay & checkHour & checkLat & checkLon & checkCity){
+                isAddButtonPressed = listener.checkPresenceInFavourites(cityNameText);
+                checkBox.setChecked(isAddButtonPressed);
+
                 displayWeather(previousWeather);
                 return true;
             } else {
@@ -403,11 +418,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      * @param name: new city to be displayed
      */
     public void updateCityName(String name) {
-        if(cityNameText != null) {
-            if (!name.equals(cityNameText)) {
-                cityNameText = name;
-                localizationSwitch = false;
-            }
+        if(!name.equals(cityNameText)) {
+            cityNameText = name;
+            localizationSwitch = false;
         }
     }
     /**
@@ -490,18 +503,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onDestroy();
 
     }
-    @Override
-    public void onStop() {
-        super.onStop();
 
-    }
     /**
      * Called when the view hierarchy associated with user leaves fragment.
      * It saves currently displayed city, and stops location services to save power.
      */
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
         listener.cityToRetain(cityNameText);
         if (fusedLocationProviderClient != null) {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
