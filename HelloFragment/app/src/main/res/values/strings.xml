@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hello Fragment</string>
+    <string name="weather_information">%1$f °C \n %2$f km/h \n %3$d hPa </string>
+</resources>
