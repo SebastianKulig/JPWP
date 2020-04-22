@@ -99,7 +99,7 @@ Wykorzystane technologie:
 - powiadomienia
 - ~~inne inkonki, a przynajmiej są już obrazki~~
 - auto-backup w manifeście, bo się pulta
-- uporządkowanie kodu - ~~zmienne w string.xml~~, przeniesienie części rzeczy z onCreateView()
+- uporządkowanie kodu - ~~zmienne w string.xml, przeniesienie części rzeczy z onCreateView()~~
 
 
 # Napotkane problemy:
