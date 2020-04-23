@@ -1,7 +1,6 @@
 package com.example.hellofragment;
 
 import android.content.Context;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -9,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,20 +16,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 public class HelloFragmentB extends Fragment {
 
+    //TODO zad. 4
     public interface SendCityNameListener {
         void newCity(String city);
     }
 
-    private SendCityNameListener sendCityNameListener;
-    private TextView textView;
-    private String string;
+    private SendCityNameListener sendCityNameListener;  //Podany kod
+    private TextView textView;                          //Podany kod
+    private String textViewString;                      //Podany kod
 
-    private EditText searchCity;
+    private EditText searchCity;                        //Podany kod
 
+    //TODO zad. 4
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -43,22 +40,25 @@ public class HelloFragmentB extends Fragment {
                     + " must implement SendCityNameListener");
         }
     }
-
+    //TODO zadanie 2.1: uzupełnij metodę onCreateview(...)
+    //TODO zadanie 3:   komunikacja
+    //TODO zadanie 4:   przygowtowanie do API
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.hello_fragment_b, container, false);
-        textView = view.findViewById(R.id.textB);
-        searchCity = view.findViewById(R.id.search);
+        View view = inflater.inflate(R.layout.hello_fragment_b_final, container, false); //TODO zad. 2.1 oraz zad. 4
+        textView = view.findViewById(R.id.textB);                                                   //TODO zad. 2.1
+        searchCity = view.findViewById(R.id.search);                                                //TODO zad. 4
 
-        searchCity.setOnEditorActionListener(editorActionListener);
+        searchCity.setOnEditorActionListener(editorActionListener);                                 //TODO zad. 4: kod do wklejenia
 
-        if (string != null && !string.isEmpty()) {
-            textView.setText(string);
+        if (textViewString != null && !textViewString.isEmpty()) {                                  //TODO zad. 3
+            textView.setText(textViewString);                                                       //TODO zad. 3
         }
-        return view;
+        return view;                                                                                //podany kod
     }
 
+    //TODO zad. 4: gotowy kod do wklejenia
     private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -77,12 +77,14 @@ public class HelloFragmentB extends Fragment {
         }
     };
 
+    //TODO zad. 3
     void updateData(String text) {
         if (textView != null){
-            string = text;
+            textViewString = text;
         }
     }
 
+    //TODO zad. 4
     @Override
     public void onDetach() {
         super.onDetach();

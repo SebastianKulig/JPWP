@@ -14,57 +14,59 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity implements HelloFragmentA.HelloFragmentAListener,
         HelloFragmentB.SendCityNameListener {
 
-    private HelloFragmentB fragmentB;
-    private HelloFragmentA fragmentA;
+    private HelloFragmentB fragmentB;   //podany kod
+    private HelloFragmentA fragmentA;   //podany kod
 
-    BottomNavigationView navbar;
+    BottomNavigationView navbar;        //podany kod
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);                     //podany kod
 
-        if (fragmentA == null) {
-            fragmentA = new HelloFragmentA();
+        if (fragmentA == null) {                                    //podany kod
+            fragmentA = new HelloFragmentA();                       //podany kod
         }
 
-        if (fragmentB == null) {
-            fragmentB = new HelloFragmentB();
+        if (fragmentB == null) {                                    //podany kod
+            fragmentB = new HelloFragmentB();                       //podany kod
         }
 
-        navbar = findViewById(R.id.bottom_nav_bar);
-        navbar.setOnNavigationItemSelectedListener(navListener);
+        navbar = findViewById(R.id.bottom_nav_bar);                 //podany kod
+        navbar.setOnNavigationItemSelectedListener(navListener);    //podany kod
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragmentA).commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();                  //TODO zad. 2.2
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();   //TODO zad. 2.2
+        fragmentTransaction.replace(R.id.fragment_container, fragmentA).commit();       //TODO zad. 2.2
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =                         //podany kod
+            new BottomNavigationView.OnNavigationItemSelectedListener() {                               //podany kod
                 @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-                    switch (item.getItemId()) {
-                        case R.id.fragment_a:
-                            selectedFragment = fragmentA;
-                            break;
-                        case R.id.fragment_b:
-                            selectedFragment = fragmentB;
-                            break;
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {                       //podany kod
+                    Fragment selectedFragment = null;                                                   //podany kod
+                    switch (item.getItemId()) {                                                         //podany kod
+                        case R.id.fragment_a:                                                           //podany kod
+                            selectedFragment = fragmentA;                                               //podany kod
+                            break;                                                                      //podany kod
+                        case R.id.fragment_b:                                                           //podany kod
+                            selectedFragment = fragmentB;                                               //podany kod
+                            break;                                                                      //podany kod
                     }
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).commit();
+                    FragmentManager fragmentManager = getSupportFragmentManager();                      //podany kod
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();       //podany kod
+                    fragmentTransaction.replace(R.id.fragment_container, selectedFragment).commit();    //podany kod
                     return true;
                 }
             };
 
+    //TODO zad. 3
     @Override
     public void sendData(String text) {
         fragmentB.updateData(text);
     }
 
+    //TODO zad. 4
     @Override
     public void newCity(String city) {
         fragmentA.updateCity(city);
