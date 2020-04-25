@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements HelloFragmentA.He
     @Override
     public void newCity(String city) {
         fragmentA.updateCity(city);
+        navbar.setSelectedItemId(R.id.fragment_a);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragmentA)
