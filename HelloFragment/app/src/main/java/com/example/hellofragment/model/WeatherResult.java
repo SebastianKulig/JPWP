@@ -1,7 +1,7 @@
 package com.example.hellofragment.model;
 
 import java.util.List;
-//TODO Dopisz settery, gettery i puste konstruktory do klas modelu.
+//TODO Dopisz settery, gettery do klas modelu.
 public class WeatherResult {
     private Coord coord;
     private List<Weather> weather;
@@ -15,8 +15,6 @@ public class WeatherResult {
     private String name;
     private int cod;
 
-    public WeatherResult() {
-    }
 
     public Coord getCoord() {
         return coord;
