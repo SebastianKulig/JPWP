@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
-        //TODO Dodaj potrzebne biblioteki
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+
+    //TODO Dodaj compileOptions
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -38,15 +40,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    //TODO Dodaj potrzebne biblioteki
+
+    //Retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+
     //Gson converter-change the response from server into java object
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
 
-    //play services
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'androidx.room:room-runtime:2.1.0'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0'
+
 }

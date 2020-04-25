@@ -1,8 +1,6 @@
 package com.example.hellofragment.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
+//TODO Dopisz settery, gettery do klas modelu.
 public class Main {
 
     private float temp;
@@ -11,8 +9,6 @@ public class Main {
     private double temp_min;
     private double temp_max;
 
-    public Main() {
-    }
 
     public float getTemp() {
         return temp;

@@ -1,5 +1,5 @@
 package com.example.hellofragment.model;
-
+//TODO Dopisz settery, gettery do klas modelu.
 public class Sys {
     private int type;
     private int id;
@@ -7,8 +7,6 @@ public class Sys {
     private String country;
     private int sunrise;
 
-    public Sys() {
-    }
 
     public int getType() {
         return type;
